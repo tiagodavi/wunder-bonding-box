@@ -1,0 +1,7 @@
+%{
+  "csv": {:hex, :csv, "2.0.0", "c66fea89ba7862b94901baf0871285e9b73cad89c5fdb57a6386d2adcf29593e", [:mix], [{:parallel_stream, "~> 1.0.4", [hex: :parallel_stream, repo: "hexpm", optional: false]}], "hexpm"},
+  "distance": {:hex, :distance, "0.2.2", "76f7cd6b6e21b3c1430a0776d594955baafd9ebf1133f98f62cdbb180074215a", [:mix], [], "hexpm"},
+  "envelope": {:hex, :envelope, "1.1.0", "77a479fd86f051059d4e9913dc4ecda42c5a4ea0d77e19f18ee3e6d383665b70", [:mix], [{:distance, "~> 0.2.1", [hex: :distance, repo: "hexpm", optional: false]}, {:geo, "~> 1.0 or ~> 2.0", [hex: :geo, repo: "hexpm", optional: false]}], "hexpm"},
+  "geo": {:hex, :geo, "2.1.0", "f9a7a1403dde669c4e3f1885aeb4f3b3fb4e51cd28ada6d9f97463e5da65c04a", [:mix], [{:ecto, "~> 2.1", [hex: :ecto, repo: "hexpm", optional: true]}, {:poison, "~> 3.0", [hex: :poison, repo: "hexpm", optional: true]}], "hexpm"},
+  "parallel_stream": {:hex, :parallel_stream, "1.0.6", "b967be2b23f0f6787fab7ed681b4c45a215a81481fb62b01a5b750fa8f30f76c", [:mix], [], "hexpm"},
+}
