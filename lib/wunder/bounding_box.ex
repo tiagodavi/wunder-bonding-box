@@ -4,30 +4,42 @@ defmodule Wunder.BoundingBox do
 
   def load_boxes(path) do
 
-    pairs = File.stream!(path)
-     |> CSV.decode
-     |> Stream.drop(@header)
-     |> Enum.map(fn {:ok, [lon, lat]} -> {lat, lon} end)
+    cond do
+      File.exists?(path) ->
 
-    pairs
-    |> Enum.with_index
-    |> Enum.map(fn {{x1, y1}, index} ->
-       case Enum.at(pairs, index + 1) do
-          {x2, y2} -> Envelope.from_geo(%Geo.Polygon{coordinates: [[{x1, y1}, {x2, y2}]]})
-          _ -> []
-        end
-     end)
+        pairs = File.stream!(path)
+         |> CSV.decode
+         |> Stream.drop(@header)
+         |> Enum.map(fn {:ok, [lon, lat]} -> {lat, lon} end)
+
+        pairs
+        |> Enum.with_index
+        |> Enum.map(fn {{x1, y1}, index} ->
+           case Enum.at(pairs, index + 1) do
+              {x2, y2} -> Envelope.from_geo(%Geo.Polygon{coordinates: [[{x1, y1}, {x2, y2}]]})
+              _ -> []
+            end
+         end)
+
+      true -> []
+    end
 
   end
 
   def load_coordinates(path) do
 
-    File.stream!(path)
-     |> CSV.decode
-     |> Stream.drop(@header)
-     |> Stream.map(fn {:ok, [lon, lat]} ->
-       %{type: "Point", coordinates: {lat, lon}}
-      end)
+    cond do
+      File.exists?(path) ->
+
+        File.stream!(path)
+         |> CSV.decode
+         |> Stream.drop(@header)
+         |> Stream.map(fn {:ok, [lon, lat]} ->
+           %{type: "Point", coordinates: {lat, lon}}
+          end)
+
+      true -> []
+    end
 
   end
 
