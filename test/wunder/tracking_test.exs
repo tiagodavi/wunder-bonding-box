@@ -4,14 +4,36 @@ defmodule Wunder.TrackingTest do
   @moduletag :tracking
   @boxes_path "./source/pairs.csv"
 
-  test ".execute returns an empty output when takes invalid arguments" do
-    response =
+  def build_result() do
     %{both_boxes: [],
       destination_boxes: [],
       origin_boxes: [],
       pair_box: %Envelope{max_x: 0, max_y: 0, min_x: 0, min_y: 0}
     }
-    assert Wunder.Tracking.execute("sth", 0) == response
+  end
+
+  test ".execute returns an empty output when takes invalid arguments" do
+    result = build_result()
+    response = Wunder.Tracking.execute("sth", 0)
+    assert result == response
+  end
+
+  test ".execute returns an empty output when takes arguments that don't match" do
+    response = Wunder.Tracking.execute(%{origin: {1.5, -3.4}, destination: {5.2, -2.7}}, @boxes_path)
+
+    both_total = response.both_boxes
+    |> Enum.count
+
+    origin_total = response.origin_boxes
+    |> Enum.count
+
+    destination_total = response.destination_boxes
+    |> Enum.count
+
+    assert both_total == 0
+    assert origin_total == 0
+    assert destination_total == 0
+    assert is_map(response.pair_box) == true
   end
 
   test ".execute returns one box matching both (origin and destination)" do

@@ -108,6 +108,14 @@ To run this app:
 
 * Run `Wunder.Tracking.execute(%{origin: {14.6346, 120.9899}, destination: {14.6364, 120.9917}}, "./source/pairs.csv")`
 
+- both_boxes = Bounding Boxes Matching both
+
+- origin boxes = Bounding Boxes Matching origin
+
+- destination_boxes = Bounding Boxes Matching destination
+
+- pair_box = Origin / Destination Bounding Box
+
 ```
 %{
   both_boxes: [
