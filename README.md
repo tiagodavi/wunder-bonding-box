@@ -110,7 +110,7 @@ To run this app:
 
 - both_boxes = Bounding Boxes Matching both
 
-- origin boxes = Bounding Boxes Matching origin
+- origin_boxes = Bounding Boxes Matching origin
 
 - destination_boxes = Bounding Boxes Matching destination
 
