@@ -43,14 +43,14 @@ defmodule Wunder.BoundingBox do
 
   end
 
-  def execute() do
+  def execute(boxes_path, coordinates_path) do
 
-     boxes = load_boxes("./source/pairs.csv")
-     coordinates = load_coordinates("./source/coordinates.csv")
+     boxes = load_boxes(boxes_path)
+     coordinates = load_coordinates(coordinates_path)
 
-     for %{coordinates: {lat, long}, type: "Point"} = coord <- coordinates,
+     for %{type: "Point", coordinates: {lat, lon}} = coord <- coordinates,
          box <- boxes, is_map(box), Envelope.contains?(box, coord) do
-           %{box: box, coord: %{x: lat, y: long}}
+           %{box: box, coord: %{x: lat, y: lon}}
      end
 
   end
