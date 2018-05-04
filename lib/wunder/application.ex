@@ -8,8 +8,8 @@ defmodule Wunder.Application do
   def start(_type, _args) do
     # List all child processes to be supervised
     children = [
-      # Starts a worker by calling: Wunder.Worker.start_link(arg)
-      # {Wunder.Worker, arg},
+      {DynamicSupervisor, strategy: :one_for_one, name: Wunder.BoundingBoxSupervisor},
+      Wunder.ResultServer
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

@@ -1,5 +1,5 @@
 defmodule Wunder.BoundingBoxTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: true
 
   @moduletag :bounding_box
   @boxes_path "./source/pairs.csv"

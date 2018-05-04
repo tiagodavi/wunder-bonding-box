@@ -7,6 +7,11 @@ To run this app:
   * Run IEX `iex -S mix`
   * Run `Wunder.BoundingBox.execute("./source/pairs.csv", "./source/coordinates.csv")`
 
+  * Load files in memory with `Wunder.Tracking.load("./source/pairs.csv")`
+  * Get all bounding boxes in memory with `Wunder.Tracking.bounding_boxes()`
+  * Execute matching with `Wunder.Tracking.execute(%{origin: {14.6346, 120.9899}, destination: {14.6364, 120.9917}})`
+  * Get all previous matchings with `Wunder.Tracking.result()`
+
 ```
 [
   %{
@@ -104,36 +109,4 @@ To run this app:
     coord: %{x: "14.4704", y: "120.9971"}
   }
 ]
-```
-
-* Run `Wunder.Tracking.execute(%{origin: {14.6346, 120.9899}, destination: {14.6364, 120.9917}}, "./source/pairs.csv")`
-
-- both_boxes = Bounding Boxes Matching both
-
-- origin_boxes = Bounding Boxes Matching origin
-
-- destination_boxes = Bounding Boxes Matching destination
-
-- pair_box = Origin / Destination Bounding Box
-
-```
-%{
-  both_boxes: [
-    %Envelope{
-      max_x: "14.636650000000003",
-      max_y: "120.99324000000004",
-      min_x: "14.626190000000003",
-      min_y: "120.98974000000004"
-
-    }
-  ],
-  destination_boxes: [],
-  origin_boxes: [],
-  pair_box: %Envelope{
-    max_x: "14.6364",
-    max_y: "120.9917",
-    min_x: "14.6346",
-    min_y: "120.9899"
-  }
-}
 ```
